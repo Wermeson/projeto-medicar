@@ -41,3 +41,4 @@ class AgendaAdmin(admin.ModelAdmin):
 
 admin.site.register(Agenda, AgendaAdmin)
 # admin.site.register(Consulta)
+# teste
