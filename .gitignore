@@ -1,0 +1,10 @@
+__pycache__
+*.*-
+*.pyc
+venv/
+*~
+myvenv
+.DS_Store
+medicar/configs.py
+media/
+/.idea/
