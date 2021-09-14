@@ -1,9 +1,10 @@
 from django.db import models
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 # Create your models here.
 import datetime
 from django.core.validators import MinValueValidator
 
+# Classe abstrata base para ter um maior controle dos modelos
 class Base(models.Model):
     data_criacao = models.DateTimeField('Data de Criação', auto_now_add=True)
     data_atualizacao = models.DateTimeField('Data de Atualização', auto_now=True)
@@ -43,6 +44,7 @@ class Agenda(Base):
     dia = models.DateField('Data de Alocação', validators=[MinValueValidator(datetime.date.today)])
     horario = models.ManyToManyField(Horario)
 
+    # Cria uma chave composta para que não seja criada mais de uma agenda pra o mesmo médico no mesmo dia
     class Meta:
         unique_together = ('medico', 'dia',)
 
@@ -50,8 +52,9 @@ class Agenda(Base):
         return f'{self.medico}, {self.dia}'
 
 
-# class Consulta(Base):
-#     agenda = models.ForeignKey(Agenda, on_delete=models.CASCADE)
-#     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-#     horario = models.TimeField('Horário')
-#     data = models.DateField('Data do agendamento')
+class Consulta(Base):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    agenda = models.ForeignKey(Agenda, on_delete=models.CASCADE)
+    data_agendamento = models.DateTimeField('Data do agendamento')
+    horario = models.ForeignKey(Horario, on_delete=models.CASCADE)
+

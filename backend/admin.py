@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import *
+from datetime import date, datetime
+from django.db.models import Q
 # Register your models here.
 
 class EspecialidadeAdmin(admin.ModelAdmin):
@@ -32,6 +34,7 @@ class AgendaAdmin(admin.ModelAdmin):
     list_filter = ["medico", "dia",]
     exclude = ['ativo', ]
 
+    # Monta uma lista de horários com os horários da agenda do médico para uma melhor visualização
     @admin.display(description="Horários")
     def get_horarios(self, obj):
         horarios=[]
@@ -39,6 +42,19 @@ class AgendaAdmin(admin.ModelAdmin):
             horarios.append(h)
         return horarios
 
+
 admin.site.register(Agenda, AgendaAdmin)
-# admin.site.register(Consulta)
-# teste
+
+
+class ConsultaAdmin(admin.ModelAdmin):
+    list_display = ["agenda", "usuario", "horario", "data_agendamento"]
+    list_filter = ["agenda", "usuario", "data_agendamento"]
+    exclude = ['ativo', ]
+
+    # def get_queryset(self):
+    #     return Consulta.objects.filter(
+    #         Q(usuario=self.request.user) & Q(agenda__dia__gte=date.today())
+    #         | (Q(agenda__dia=date.today()) & Q(horario__gte=datetime.now().time()))
+    #     )
+
+admin.site.register(Consulta, ConsultaAdmin)
