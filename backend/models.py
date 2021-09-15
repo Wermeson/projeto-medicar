@@ -47,6 +47,7 @@ class Agenda(Base):
     # Cria uma chave composta para que não seja criada mais de uma agenda pra o mesmo médico no mesmo dia
     class Meta:
         unique_together = ('medico', 'dia',)
+        ordering = ["dia"]
 
     def __str__(self):
         return f'{self.medico}, {self.dia}'

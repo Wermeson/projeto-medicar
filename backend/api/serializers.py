@@ -23,7 +23,8 @@ class AgendaSerializer(serializers.ModelSerializer):
     def get_horarios(self, obj):
         horarios=[]
         for h in obj.horario.all():
-            if Consulta.objects.filter(agenda=obj, horario=h).count() == 0:
+            # verifica se existe uma consulta agendada e se os horários disponiveis da agenda é maior que o horário atual
+            if Consulta.objects.filter(agenda=obj, horario=h).count() == 0 and h.horario.strftime("%H:%M") > datetime.datetime.now().strftime("%H:%M"):
                 horarios.append(h.horario)
         return horarios
 
@@ -55,3 +56,4 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
+        extra_kwargs = {"password": {"write_only": True}}

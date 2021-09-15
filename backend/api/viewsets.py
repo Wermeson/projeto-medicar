@@ -29,7 +29,10 @@ class AgendaViewSet(viewsets.ModelViewSet):
 
 class ConsultaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.ConsultaSerializer
-    queryset = Consulta.objects.all()
+    # queryset = Consulta.objects.all()
+
+    def get_queryset(self):
+        return Consulta.objects.filter(usuario=self.request.user)
 
 
 class UserViewSet(viewsets.ModelViewSet):
