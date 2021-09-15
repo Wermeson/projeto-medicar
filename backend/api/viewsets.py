@@ -30,3 +30,9 @@ class AgendaViewSet(viewsets.ModelViewSet):
 class ConsultaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.ConsultaSerializer
     queryset = Consulta.objects.all()
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.UserSerializer
+    permission_classes = [AllowAny]
+    queryset = User.objects.all()

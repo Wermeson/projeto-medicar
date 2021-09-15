@@ -15,5 +15,6 @@ urlpatterns = [
     path("medicos/", MedicoViewSet.as_view(), name="medicos"),
     path("agendas/", AgendaViewSet.as_view({'get': 'list'}), name="agendas"),
     path("consultas/", ConsultaViewSet.as_view({'get': 'list'}), name="consultas"),
+    path("users/", UserViewSet.as_view({'get': 'list'}), name="users"),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
