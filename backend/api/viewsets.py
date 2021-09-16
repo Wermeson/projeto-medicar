@@ -3,7 +3,7 @@ from backend.api import serializers
 from backend.models import *
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import filters as filters_rest
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView
 from backend.filters import *
 
 class EspecialidadeViewSet(viewsets.ModelViewSet):
@@ -14,7 +14,7 @@ class EspecialidadeViewSet(viewsets.ModelViewSet):
     search_fields = ["^nome"]
 
 
-class MedicoViewSet(ListAPIView):
+class MedicoViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.MedicoSerializer
     queryset = Medico.objects.all()
     permission_classes = [IsAuthenticated]
@@ -35,7 +35,7 @@ class ConsultaViewSet(viewsets.ModelViewSet):
         return Consulta.objects.filter(usuario=self.request.user)
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(CreateAPIView):
     serializer_class = serializers.UserSerializer
     permission_classes = [AllowAny]
     queryset = User.objects.all()

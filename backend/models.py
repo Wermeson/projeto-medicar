@@ -56,6 +56,9 @@ class Agenda(Base):
 class Consulta(Base):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     agenda = models.ForeignKey(Agenda, on_delete=models.CASCADE)
-    data_agendamento = models.DateTimeField('Data do agendamento')
+    data_agendamento = models.DateTimeField('Data do agendamento', auto_now_add=True)
     horario = models.ForeignKey(Horario, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ["agenda", "horario"]
 
