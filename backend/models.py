@@ -60,5 +60,5 @@ class Consulta(Base):
     horario = models.ForeignKey(Horario, on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ["agenda", "horario"]
+        ordering = ["agenda__dia", "horario__horario"]
 

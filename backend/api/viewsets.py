@@ -7,6 +7,8 @@ from rest_framework.generics import ListAPIView, CreateAPIView
 from backend.filters import *
 from datetime import date, datetime
 from django.db.models import Q
+from django.db.models import F
+from django_filters import rest_framework as filters
 
 class EspecialidadeViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.EspecialidadeSerializer
@@ -20,27 +22,37 @@ class MedicoViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.MedicoSerializer
     queryset = Medico.objects.all()
     permission_classes = [IsAuthenticated]
-    filter_backends = [filters_rest.SearchFilter]
-    search_fields = ["^nome"]
-    # filterset_class = MedicoFilter
+    filter_backends = [filters.DjangoFilterBackend]
+    # search_fields = ["^nome"]
+    filterset_class = MedicoFilter
 
 
 class AgendaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.AgendaSerializer
-    queryset = Agenda.objects.all()
+    def get_queryset(self):
+        agendas = Agenda.objects.filter(dia__gte=date.today())
+        existe_horario = False
+        for agenda in agendas:
+            for h in agenda.horario.all():
+                # verifica se existe algum horário disponível na data atual
+                if agenda.dia == date.today() and h.horario > datetime.now().time():
+                    existe_horario = True
+            if not existe_horario:
+                agendas = agendas.exclude(id=agenda.id)
+
+        return agendas
+
+        # return agendas.exclude(Q(dia=date.today()) & Q(horario__horario__lt=datetime.now().time()))
 
 class ConsultaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.ConsultaSerializer
     permission_classes = [IsAuthenticated]
-    # queryset = Consulta.objects.all()
     def get_queryset(self):
+        # pega as consultas do usuário logado com a data da consulta maior que a data atual
         consultas = Consulta.objects.filter(usuario=self.request.user, agenda__dia__gte=date.today())
-        # for consulta in consultas:
-        #     if consulta.agenda.dia == date.today() and consulta.horario.horario < datetime.now().time(0):
+        # No caso da data da consulta ser a mesma da data atual,
+        # retorna apenas as consultas cujo horario agendado é maior que o horário atual
         return consultas.exclude(agenda__dia=date.today(), horario__horario__lt=datetime.now().time())
-
-        # return Consulta.objects.filter(Q(usuario=self.request.user) & Q(agenda__dia__gte=date.today()) | (Q(agenda__dia=date.today()) & Q(horario__horario__gte=datetime.now().time())))
-
 
 class UserViewSet(CreateAPIView):
     serializer_class = serializers.UserSerializer
