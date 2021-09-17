@@ -45,7 +45,7 @@ class AgendaViewSet(viewsets.ModelViewSet):
                     existe_horario_disponivel = True
                 # se a data da agenda é maior que a data atual, verifica se existe alguma consulta marcada na data a agenda no horario informado
                 elif agenda.dia > date.today() and Consulta.objects.filter(agenda__dia=agenda.dia, horario__horario=h.horario).count() == 0:
-                    existe_horario_disponivel = True
+                    existe_horario_disponivel = Tr
             # Se não existe nenhum horário disponivel naquela agenda, remove ela da listagem
             if not existe_horario_disponivel:
                 agendas = agendas.exclude(id=agenda.id)

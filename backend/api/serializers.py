@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from backend.models import *
+from datetime import datetime, date
+
 
 class EspecialidadeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,7 +26,7 @@ class AgendaSerializer(serializers.ModelSerializer):
         horarios=[]
         for h in obj.horario.all():
             # verifica se existe uma consulta agendada e se os horários disponiveis da agenda é maior que o horário atual
-            if Consulta.objects.filter(agenda=obj, horario=h).count() == 0 and h.horario.strftime("%H:%M") > datetime.datetime.now().strftime("%H:%M"):
+            if Consulta.objects.filter(agenda=obj, horario=h).count() == 0 and h.horario.strftime("%H:%M") > datetime.now().strftime("%H:%M"):
                 horarios.append(h.horario)
         return horarios
 
@@ -63,8 +65,21 @@ class ConsultaCreateSerializer(serializers.Serializer):
         return Consulta.objects.create(usuario=usuario, agenda=agenda, horario=horario)
 
     def validate(self, attrs):
-        pass
-
+        agenda = Agenda.objects.filter(id=attrs['agenda_id'])
+        horario = Horario.objects.filter(horario=attrs['horario'])
+        usuario = self.context['request'].user
+        # Verifica se a agenda existe
+        if agenda.count() == 0:
+           raise serializers.ValidationError({"Agenda": "Essa agenda não existe!"})
+        elif horario.count() == 0:
+            raise serializers.ValidationError({"Horário": "Esse horário não foi cadastrado"})
+        elif agenda.get().dia == date.today() and horario.get().horario < datetime.now().time():
+            raise serializers.ValidationError({"Horário": "Horário Inválido"})
+        elif agenda.get().dia < date.today():
+            raise serializers.ValidationError({"Data": "Data Inválida"})
+        elif Consulta.objects.filter(usuario=usuario, agenda__dia=date.today(), horario__horario=horario.get().horario).count() > 0:
+            raise serializers.ValidationError({"Consulta": "Já existe uma consulta cadastrada para esse horário"})
+        return attrs
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
