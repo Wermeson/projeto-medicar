@@ -8,3 +8,4 @@ myvenv
 medicar/configs.py
 media/
 /.idea/
+medicar/.env
