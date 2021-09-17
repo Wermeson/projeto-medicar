@@ -29,6 +29,10 @@ class MedicoViewSet(viewsets.ModelViewSet):
 
 class AgendaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.AgendaSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = [filters.DjangoFilterBackend]
+    filterset_class = AgendaFilter
+
     def get_queryset(self):
         agendas = Agenda.objects.filter(dia__gte=date.today())
         existe_horario = False
@@ -37,6 +41,7 @@ class AgendaViewSet(viewsets.ModelViewSet):
                 # verifica se existe algum horário disponível na data atual
                 if agenda.dia == date.today() and h.horario > datetime.now().time():
                     existe_horario = True
+            # Se não existe nenhum horário disponivel naquela agenda, remove ela da listagem
             if not existe_horario:
                 agendas = agendas.exclude(id=agenda.id)
 
