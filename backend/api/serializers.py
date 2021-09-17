@@ -26,7 +26,7 @@ class AgendaSerializer(serializers.ModelSerializer):
         horarios=[]
         for h in obj.horario.all():
             # verifica se existe uma consulta agendada e se os horários disponiveis da agenda é maior que o horário atual
-            if Consulta.objects.filter(agenda=obj, horario=h).count() == 0 and h.horario.strftime("%H:%M") > datetime.now().strftime("%H:%M"):
+            if not Consulta.objects.filter(agenda=obj, horario=h).exists() and h.horario.strftime("%H:%M") > datetime.now().strftime("%H:%M"):
                 horarios.append(h.horario)
         return horarios
 
@@ -69,15 +69,15 @@ class ConsultaCreateSerializer(serializers.Serializer):
         horario = Horario.objects.filter(horario=attrs['horario'])
         usuario = self.context['request'].user
         # Verifica se a agenda existe
-        if agenda.count() == 0:
+        if not agenda.exists():
            raise serializers.ValidationError({"Agenda": "Essa agenda não existe!"})
-        elif horario.count() == 0:
+        elif not horario.exists():
             raise serializers.ValidationError({"Horário": "Esse horário não foi cadastrado"})
         elif agenda.get().dia == date.today() and horario.get().horario < datetime.now().time():
             raise serializers.ValidationError({"Horário": "Horário Inválido"})
         elif agenda.get().dia < date.today():
             raise serializers.ValidationError({"Data": "Data Inválida"})
-        elif Consulta.objects.filter(usuario=usuario, agenda__dia=date.today(), horario__horario=horario.get().horario).count() > 0:
+        elif Consulta.objects.filter(usuario=usuario, agenda__dia=date.today(), horario__horario=horario.get().horario).exists():
             raise serializers.ValidationError({"Consulta": "Já existe uma consulta cadastrada para esse horário"})
         return attrs
 
