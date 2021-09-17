@@ -2,6 +2,8 @@ from django.contrib import admin
 from .models import *
 from datetime import date, datetime
 from django.db.models import Q
+
+
 # Register your models here.
 
 class EspecialidadeAdmin(admin.ModelAdmin):
@@ -21,6 +23,7 @@ class MedicoAdmin(admin.ModelAdmin):
 
 admin.site.register(Medico, MedicoAdmin)
 
+
 class HorarioAdmin(admin.ModelAdmin):
     list_display = ["horario"]
     exclude = ['ativo', ]
@@ -31,13 +34,13 @@ admin.site.register(Horario, HorarioAdmin)
 
 class AgendaAdmin(admin.ModelAdmin):
     list_display = ["medico", "dia", "get_horarios"]
-    list_filter = ["medico", "dia",]
+    list_filter = ["medico", "dia", ]
     exclude = ['ativo', ]
 
     # Monta uma lista de horários com os horários da agenda do médico para uma melhor visualização
     @admin.display(description="Horários")
     def get_horarios(self, obj):
-        horarios=[]
+        horarios = []
         for h in obj.horario.all():
             horarios.append(h)
         return horarios
@@ -56,5 +59,6 @@ class ConsultaAdmin(admin.ModelAdmin):
     #         Q(usuario=self.request.user) & Q(agenda__dia__gte=date.today())
     #         | (Q(agenda__dia=date.today()) & Q(horario__gte=datetime.now().time()))
     #     )
+
 
 admin.site.register(Consulta, ConsultaAdmin)

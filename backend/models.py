@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 import datetime
 from django.core.validators import MinValueValidator
 
+
 # Classe abstrata base para ter um maior controle dos modelos
 class Base(models.Model):
     data_criacao = models.DateTimeField('Data de Criação', auto_now_add=True)
@@ -61,4 +62,3 @@ class Consulta(Base):
 
     class Meta:
         ordering = ["agenda__dia", "horario__horario"]
-

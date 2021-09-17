@@ -4,6 +4,7 @@ from django_filters import rest_framework as filters
 from django_filters.widgets import RangeWidget, SuffixedMultiWidget
 from backend.models import *
 
+
 class MedicoFilter(filters.FilterSet):
     search = filters.CharFilter(field_name="nome", lookup_expr="istartswith")
     especialidade = filters.ModelMultipleChoiceFilter(
@@ -13,6 +14,7 @@ class MedicoFilter(filters.FilterSet):
     class Meta:
         model = Medico
         fields = ["search", "especialidade"]
+
 
 class AgendaFilter(filters.FilterSet):
     medico = filters.ModelMultipleChoiceFilter(
