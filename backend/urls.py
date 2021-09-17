@@ -14,7 +14,8 @@ urlpatterns = [
     path("especialidades/", EspecialidadeViewSet.as_view({'get': 'list'}), name="especialidades"),
     path("medicos/", MedicoViewSet.as_view({'get': 'list'}), name="medicos"),
     path("agendas/", AgendaViewSet.as_view({'get': 'list'}), name="agendas"),
-    path("consultas/", ConsultaViewSet.as_view({'get': 'list'}), name="consultas"),
+    path("consultas/", ConsultaViewSet.as_view(), name="consultas"),
+    path("consultas/<int:pk>/", ConsultaDeleteViewSet.as_view(), name="consulta_delete"),
     path("users/", UserViewSet.as_view(), name="users"),
     path("login/", views.obtain_auth_token),
 ]

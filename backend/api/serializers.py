@@ -52,6 +52,20 @@ class ConsultaSerializer(serializers.ModelSerializer):
         fields = ['id', 'dia', 'horario', 'data_agendamento', 'medico', ]
 
 
+class ConsultaCreateSerializer(serializers.Serializer):
+    agenda_id = serializers.IntegerField()
+    horario = serializers.TimeField()
+
+    def create(self, validated_data):
+        usuario = self.context['request'].user
+        agenda = Agenda.objects.get(id=validated_data.get('agenda_id'))
+        horario = Horario.objects.get(horario=validated_data.get('horario'))
+        return Consulta.objects.create(usuario=usuario, agenda=agenda, horario=horario)
+
+    def validate(self, attrs):
+        pass
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
