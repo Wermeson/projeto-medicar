@@ -25,10 +25,14 @@ class AgendaSerializer(serializers.ModelSerializer):
     def get_horarios(self, obj):
         horarios = []
         for h in obj.horario.all():
-            # verifica se existe uma consulta agendada e se os horários disponiveis da agenda é maior que o horário atual
-            if not Consulta.objects.filter(agenda=obj, horario=h).exists() and h.horario.strftime(
-                    "%H:%M") > datetime.now().strftime("%H:%M"):
-                horarios.append(h.horario)
+            if obj.dia > date.today():
+                # verifica se existe uma consulta agendada
+                if not Consulta.objects.filter(agenda=obj, horario=h).exists():
+                    horarios.append(h.horario)
+            elif obj.dia == date.today():
+                # verifica se existe uma consulta agendada e se os horários disponiveis da agenda é maior que o horário atual
+                if not Consulta.objects.filter(agenda=obj, horario=h).exists() and h.horario > datetime.now().time():
+                    horarios.append(h.horario)
         return horarios
 
     class Meta:
