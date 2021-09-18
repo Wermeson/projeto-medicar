@@ -74,17 +74,20 @@ class ConsultaCreateSerializer(serializers.Serializer):
         horario = Horario.objects.filter(horario=attrs['horario'])
         usuario = self.context['request'].user
         # Verifica se a agenda existe
-        if not agenda.exists():
-            raise serializers.ValidationError({"Agenda": "Essa agenda não existe!"})
-        elif not horario.exists():
+        if horario.exists():
+            if not agenda.exists():
+                raise serializers.ValidationError({"Agenda": "Essa agenda não existe!"})
+            elif not agenda.filter(horario__horario=horario.get().horario).exists():
+                raise serializers.ValidationError({"Horário": "Horário Indisponível"})
+            elif agenda.get().dia == date.today() and horario.get().horario < datetime.now().time():
+                raise serializers.ValidationError({"Horário": "Esse horário já passou"})
+            elif agenda.get().dia < date.today():
+                raise serializers.ValidationError({"Data": "Data passada"})
+            elif Consulta.objects.filter(usuario=usuario, agenda__dia=agenda.get().dia,
+                                         horario__horario=horario.get().horario).exists():
+                raise serializers.ValidationError({"Consulta": "Já existe uma consulta cadastrada para esse horário"})
+        else:
             raise serializers.ValidationError({"Horário": "Esse horário não foi cadastrado"})
-        elif agenda.get().dia == date.today() and horario.get().horario < datetime.now().time():
-            raise serializers.ValidationError({"Horário": "Horário Inválido"})
-        elif agenda.get().dia < date.today():
-            raise serializers.ValidationError({"Data": "Data Inválida"})
-        elif Consulta.objects.filter(usuario=usuario, agenda__dia=date.today(),
-                                     horario__horario=horario.get().horario).exists():
-            raise serializers.ValidationError({"Consulta": "Já existe uma consulta cadastrada para esse horário"})
         return attrs
 
 
