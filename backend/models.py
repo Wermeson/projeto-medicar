@@ -1,8 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
-import datetime
 from django.core.validators import MinValueValidator
+from django.db import models
+import datetime
 
 
 # Classe abstrata base para ter um maior controle dos modelos

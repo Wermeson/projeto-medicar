@@ -1,7 +1,7 @@
 from backend.api.viewsets import *
 from django.urls import path
-from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework.authtoken import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path("especialidades/", EspecialidadeViewSet.as_view({'get': 'list'}), name="especialidades"),

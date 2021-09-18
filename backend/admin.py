@@ -1,7 +1,5 @@
-from django.contrib import admin
 from .models import *
-from datetime import date, datetime
-from django.db.models import Q
+from django.contrib import admin
 
 
 # Register your models here.

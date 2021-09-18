@@ -1,13 +1,13 @@
-from rest_framework import viewsets
 from backend.api import serializers
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework import filters as filters_rest
-from rest_framework.generics import CreateAPIView, RetrieveDestroyAPIView
 from backend.filters import *
 from datetime import date, datetime
 from django.db.models import Q
 from django_filters import rest_framework as filters
 from drf_rw_serializers import generics
+from rest_framework import filters as filters_rest
+from rest_framework import viewsets
+from rest_framework.generics import CreateAPIView, RetrieveDestroyAPIView
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 
 class EspecialidadeViewSet(viewsets.ModelViewSet):
@@ -53,8 +53,6 @@ class AgendaViewSet(viewsets.ModelViewSet):
 
         return agendas
 
-        # return agendas.exclude(Q(dia=date.today()) & Q(horario__horario__lt=datetime.now().time()))
-
 
 class ConsultaViewSet(generics.ListCreateAPIView):
     read_serializer_class = serializers.ConsultaSerializer
@@ -76,7 +74,7 @@ class ConsultaDeleteViewSet(RetrieveDestroyAPIView):
     def get_queryset(self):
         consultas = Consulta.objects.filter(usuario=self.request.user)
         return consultas.filter(Q(agenda__dia__gt=date.today()) | (
-                    Q(agenda__dia=date.today()) & Q(horario__horario__gte=datetime.now().time())))
+                Q(agenda__dia=date.today()) & Q(horario__horario__gte=datetime.now().time())))
 
 
 class UserViewSet(CreateAPIView):

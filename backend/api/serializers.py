@@ -1,6 +1,6 @@
-from rest_framework import serializers
 from backend.models import *
 from datetime import datetime, date
+from rest_framework import serializers
 
 
 class EspecialidadeSerializer(serializers.ModelSerializer):

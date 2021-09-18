@@ -1,8 +1,5 @@
-from django.core.exceptions import ValidationError
-from django_filters import fields
-from django_filters import rest_framework as filters
-from django_filters.widgets import RangeWidget, SuffixedMultiWidget
 from backend.models import *
+from django_filters import rest_framework as filters
 
 
 class MedicoFilter(filters.FilterSet):
