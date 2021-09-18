@@ -45,18 +45,3 @@ class AgendaAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Agenda, AgendaAdmin)
-
-
-class ConsultaAdmin(admin.ModelAdmin):
-    list_display = ["agenda", "usuario", "horario", "data_agendamento"]
-    list_filter = ["agenda", "usuario", "data_agendamento"]
-    exclude = ['ativo', ]
-
-    # def get_queryset(self):
-    #     return Consulta.objects.filter(
-    #         Q(usuario=self.request.user) & Q(agenda__dia__gte=date.today())
-    #         | (Q(agenda__dia=date.today()) & Q(horario__gte=datetime.now().time()))
-    #     )
-
-
-admin.site.register(Consulta, ConsultaAdmin)
