@@ -35,7 +35,6 @@ class AgendaViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         agendas = Agenda.objects.filter(dia__gte=date.today())
-        existe_horario_disponivel = False
         for agenda in agendas:
             existe_horario_disponivel = False
             for h in agenda.horario.all():
