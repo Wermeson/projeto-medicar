@@ -2,7 +2,8 @@
 
 Projeto desenvolvido para um processo seletivo. Esse sistema é para uma clínica chamada Medicar, a ideia geral é auxiliar os clientes na marcação de consultas e gerenciar seu corpo médico.
 
-Nesse projeto foi utilizado o sistema operacional Windows 10, com a IDE PyCharm Community. Mas você pode utilizar o ambiente que o for mais conveniente.
+Nesse projeto foi utilizado o sistema operacional Windows 10. Mas você pode utilizar o ambiente que o for mais conveniente. 
+A versão do Python utilizada foi 3.9.5.
 
 # Configurações
 ## Passo 1:
@@ -15,28 +16,44 @@ $ cd projeto-medicar
 ```
 
 ## Passo 2:
+Crie o ambiente virtual (venv). 
+```
+$ python -m venv nome_da_virtualenv
+```
+## Passo 3:
+Ative a sua env:
+No linux:
+```
+$ source nome_da_virtualenv/bin/activate
+```
+No Windows:
+```
+$ nome_da_virtualenv/Scripts/activate
+```
+
+## Passo 4:
 Instale as dependências do projeto:
 
 ```
 $ pip install -r requirements.txt
 ```
 
-## Passo 3:
-Como foi utilizado o banco de dados Postgres, você deve criar um database postgres.
+## Passo 5:
+Nesse projeto foi utilizado o banco de dados Postgres, então você deve criar um database postgres.
 
-## Passo 4:
+## Passo 6:
 Dentro da pasta do projeto entre na pasta "medicar" e crie o arquvio ".env". Nessa pasta, já existe um arquivo modelo chamado ".env.sample". Faça uma cópia desse arquivo ".env.sample" para ".env".
 
 Abra o arquivo .env e substitua as seguintes informações: user, password, database e host(se for banco local, coloque localhost ou 127.0.0.1).
 
-## Passo 5:
+## Passo 7:
 Dentro da raiz do projeto execute o comando para criar as tabelas do banco de dados:
 
 ```
 $ python manage.py migrate
 ```
 
-## Passo 6:
+## Passo 8:
 Crie um usuário passar acessar o admin:
 ```
 $ python manage.py createsuperuser
