@@ -33,7 +33,7 @@ $ nome_da_virtualenv/Scripts/activate
 ```
 
 ## Passo 4:
-Instale as dependências do projeto:
+Com sua venv ativada, instale as dependências do projeto:
 
 ```
 $ pip install -r requirements.txt
@@ -41,6 +41,11 @@ $ pip install -r requirements.txt
 
 ## Passo 5:
 Nesse projeto foi utilizado o banco de dados Postgres, então você deve criar um database postgres.
+
+Abra seu SGBD e execute o comando:
+```
+CREATE DATABASE NOME_DO_SEU_DATABASE
+```
 
 ## Passo 6:
 Dentro da pasta do projeto entre na pasta "medicar" e crie o arquvio ".env". Nessa pasta, já existe um arquivo modelo chamado ".env.sample". Faça uma cópia desse arquivo ".env.sample" para ".env".
