@@ -165,6 +165,13 @@ GET /especialidades/
     }
 ]
 ```
+#### Filtros
+* Nome da especialidade (termo de pesquisa)
+
+```
+GET /especialidades/?search=ped
+```
+
 
 ### /medicos/
 #### Listar Médicos
@@ -203,6 +210,14 @@ GET /medicos/
         }
     }
 ]
+```
+#### Filtros
+
+* Identificador de uma ou mais especialidades
+* Nome do médico (termo de pesquisa)
+
+```
+GET /medicos/?search=maria&especialidade=1&especialidade=3
 ```
 
 ### /agendas/
@@ -252,6 +267,14 @@ GET /agendas/
         ]
     }
 ]
+```
+#### Filtros
+* Identificador de um ou mais médicos
+* Identificador de uma ou mais especialidades
+* Intervalo de data
+
+```
+GET /agendas/?medico=1&especialidade=2&data_inicio=2020-01-01&data_final=2020-01-05
 ```
 
 ### /consultas/
