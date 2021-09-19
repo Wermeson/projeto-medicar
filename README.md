@@ -50,6 +50,14 @@ CREATE DATABASE NOME_DO_SEU_DATABASE
 ## Passo 6:
 Dentro da pasta do projeto entre na pasta "medicar" e crie o arquvio ".env". Nessa pasta, já existe um arquivo modelo chamado ".env.sample". Faça uma cópia desse arquivo ".env.sample" para ".env".
 
+No linux:
+```
+$ cp .env.sample .env
+```
+No Windows:
+```
+$ copy .env.sample .env
+```
 Abra o arquivo .env e substitua as seguintes informações: user, password, database e host(se for banco local, coloque localhost ou 127.0.0.1).
 
 ## Passo 7:
