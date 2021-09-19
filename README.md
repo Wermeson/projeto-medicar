@@ -22,6 +22,7 @@ $ python -m venv nome_da_virtualenv
 ```
 ## Passo 3:
 Ative a sua env:
+
 No linux:
 ```
 $ source nome_da_virtualenv/bin/activate
