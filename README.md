@@ -1,6 +1,6 @@
 # projeto-medicar
 
-Projeto desenvolvido para um processo seletivo. Esse sistema é para uma clínica chamada Medicar, a ideia geral é auxiliar os clientes na marcação de consultas e gerenciar seu corpo médico.
+Projeto desenvolvido para um processo seletivo da Intmed(https://github.com/Intmed-Software/desafio/blob/master/backend/README.md). Esse sistema é para uma clínica chamada Medicar, a ideia geral é auxiliar os clientes na marcação de consultas e gerenciar seu corpo médico.
 
 Nesse projeto foi utilizado o sistema operacional Windows 10. Mas você pode utilizar o ambiente que o for mais conveniente. 
 A versão do Python utilizada foi 3.9.5.
