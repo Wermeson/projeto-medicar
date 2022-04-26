@@ -10,15 +10,22 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FooterComponent } from './components/template/footer/footer.component';
 import { NavComponent } from './components/template/nav/nav.component';
 
-import {MatSidenavModule} from '@angular/material/sidenav'
-import {MatListModule} from '@angular/material/list'
-
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import { HomeComponent } from './views/home/home.component';
+import { EspecialidadesCrudComponent } from './views/especialidades-crud/especialidades-crud.component';
+import { EspecialidadesCreateComponent } from './components/especialidades/especialidades-create/especialidades-create.component'
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    NavComponent
+    NavComponent,
+    HomeComponent,
+    EspecialidadesCrudComponent,
+    EspecialidadesCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +33,8 @@ import {MatListModule} from '@angular/material/list'
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule, 
+    MatCardModule, MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
