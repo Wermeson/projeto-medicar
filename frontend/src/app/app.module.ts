@@ -21,7 +21,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field'
-import { MatInputModule } from '@angular/material/input'
+import { MatInputModule } from '@angular/material/input';
+import { EspecialidadesReadComponent } from './components/especialidades/especialidades-read/especialidades-read.component'
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,8 @@ import { MatInputModule } from '@angular/material/input'
     NavComponent,
     HomeComponent,
     EspecialidadesCrudComponent,
-    EspecialidadesCreateComponent
+    EspecialidadesCreateComponent,
+    EspecialidadesReadComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,10 @@ import { MatInputModule } from '@angular/material/input'
     HttpClientModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

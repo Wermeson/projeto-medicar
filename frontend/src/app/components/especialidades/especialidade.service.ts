@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EspecialidadeService {
-  baseUrl = 'http://127.0.0.1:8000/especialidades/'
+  baseUrl = 'http://127.0.0.1:8000'
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
@@ -30,6 +30,10 @@ export class EspecialidadeService {
   create(especialidade: Especialidade): Observable<Especialidade>{
     // var token = "4092f2783bdd727b97dd24cf2ff21aa9cab065cc";
     // const headers = new HttpHeaders().set('Authorization', `bearer ${token}`);
-    return this.http.post<Especialidade>(this.baseUrl, especialidade)
+    return this.http.post<Especialidade>(this.baseUrl + '/especialidades/', especialidade)
+  }
+
+  read(): Observable<Especialidade[]>{
+    return this.http.get<Especialidade[]>(this.baseUrl + '/especialidades/')
   }
 }

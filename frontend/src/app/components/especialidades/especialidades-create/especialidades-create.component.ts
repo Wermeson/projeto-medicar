@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class EspecialidadesCreateComponent implements OnInit {
 
   especialidade: Especialidade = {
-    nome: 'Teste 2'
+    nome: ''
   }
 
   constructor(private especialidadeService: EspecialidadeService, private router: Router) { }
