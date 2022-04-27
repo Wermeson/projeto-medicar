@@ -4,7 +4,7 @@ from rest_framework.authtoken import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-    path("especialidades/", EspecialidadeViewSet.as_view({'get': 'list'}), name="especialidades"),
+    path("especialidades/", EspecialidadeViewSet.as_view(), name="especialidades"),
     path("medicos/", MedicoViewSet.as_view({'get': 'list'}), name="medicos"),
     path("agendas/", AgendaViewSet.as_view({'get': 'list'}), name="agendas"),
     path("consultas/", ConsultaViewSet.as_view(), name="consultas"),

@@ -16,7 +16,13 @@ import {MatListModule} from '@angular/material/list';
 import { HomeComponent } from './views/home/home.component';
 import { EspecialidadesCrudComponent } from './views/especialidades-crud/especialidades-crud.component';
 import { EspecialidadesCreateComponent } from './components/especialidades/especialidades-create/especialidades-create.component'
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +40,13 @@ import {MatButtonModule} from '@angular/material/button';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule, 
-    MatCardModule, MatButtonModule
+    MatCardModule, 
+    MatButtonModule,
+    MatSnackBarModule,
+    HttpClientModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

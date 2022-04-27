@@ -10,10 +10,10 @@ from rest_framework.generics import CreateAPIView, RetrieveDestroyAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 
-class EspecialidadeViewSet(viewsets.ModelViewSet):
+class EspecialidadeViewSet(generics.ListCreateAPIView):
     serializer_class = serializers.EspecialidadeSerializer
     queryset = Especialidade.objects.all()
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     filter_backends = [filters_rest.SearchFilter]
     search_fields = ["^nome"]
 
