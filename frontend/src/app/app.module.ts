@@ -26,6 +26,7 @@ import { EspecialidadesReadComponent } from './components/especialidades/especia
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MedicoCrudComponent } from './views/medico-crud/medico-crud.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatSortModule } from '@angular/material/sort';
     HomeComponent,
     EspecialidadesCrudComponent,
     EspecialidadesCreateComponent,
-    EspecialidadesReadComponent
+    EspecialidadesReadComponent,
+    MedicoCrudComponent
   ],
   imports: [
     BrowserModule,

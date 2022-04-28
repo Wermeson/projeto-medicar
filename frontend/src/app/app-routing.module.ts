@@ -3,6 +3,7 @@ import { EspecialidadesCrudComponent } from './views/especialidades-crud/especia
 import { HomeComponent } from './views/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MedicoCrudComponent } from './views/medico-crud/medico-crud.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: "especialidades/create",
     component: EspecialidadesCreateComponent
+  },
+  {
+    path: "medicos",
+    component: MedicoCrudComponent
   }
 ];
 

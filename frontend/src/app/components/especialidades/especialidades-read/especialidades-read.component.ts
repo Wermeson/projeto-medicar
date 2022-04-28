@@ -17,7 +17,6 @@ export class EspecialidadesReadComponent implements OnInit {
   ngOnInit(): void {
     this.especialidadeService.read().subscribe(especialidades => {
       this.especialidades = especialidades
-      console.log(especialidades);
     })
   }
 
