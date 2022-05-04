@@ -18,10 +18,10 @@ class EspecialidadeViewSet(generics.ListCreateAPIView):
     search_fields = ["^nome"]
 
 
-class MedicoViewSet(viewsets.ModelViewSet):
+class MedicoViewSet(generics.ListCreateAPIView):
     serializer_class = serializers.MedicoSerializer
     queryset = Medico.objects.all()
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     filter_backends = [filters.DjangoFilterBackend]
     # search_fields = ["^nome"]
     filterset_class = MedicoFilter

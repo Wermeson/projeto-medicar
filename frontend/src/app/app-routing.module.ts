@@ -1,3 +1,4 @@
+import { MedicoCreateComponent } from './components/medico/medico-create/medico-create.component';
 import { EspecialidadesCreateComponent } from './components/especialidades/especialidades-create/especialidades-create.component';
 import { EspecialidadesCrudComponent } from './views/especialidades-crud/especialidades-crud.component';
 import { HomeComponent } from './views/home/home.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: "medicos",
     component: MedicoCrudComponent
+  },
+  {
+    path: "medico/create",
+    component: MedicoCreateComponent
   }
 ];
 

@@ -10,11 +10,11 @@ class EspecialidadeSerializer(serializers.ModelSerializer):
 
 
 class MedicoSerializer(serializers.ModelSerializer):
-    especialidade = EspecialidadeSerializer()
+    especialidade_id = serializers.IntegerField()
 
     class Meta:
         model = Medico
-        fields = ['id', 'crm', 'nome', 'especialidade', ]
+        fields = ['id', 'crm', 'nome', 'especialidade_id', ]
 
 
 class AgendaSerializer(serializers.ModelSerializer):

@@ -27,6 +27,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MedicoCrudComponent } from './views/medico-crud/medico-crud.component';
+import { MedicoCreateComponent } from './components/medico/medico-create/medico-create.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { MedicoCrudComponent } from './views/medico-crud/medico-crud.component';
     EspecialidadesCrudComponent,
     EspecialidadesCreateComponent,
     EspecialidadesReadComponent,
-    MedicoCrudComponent
+    MedicoCrudComponent,
+    MedicoCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { MedicoCrudComponent } from './views/medico-crud/medico-crud.component';
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
