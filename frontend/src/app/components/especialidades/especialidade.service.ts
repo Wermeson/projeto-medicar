@@ -36,4 +36,8 @@ export class EspecialidadeService {
   read(): Observable<Especialidade[]>{
     return this.http.get<Especialidade[]>(this.baseUrl + '/especialidades/')
   }
+
+  getEspecialidade(id: number): Observable<Especialidade[]>{
+    return this.http.get<Especialidade[]>(this.baseUrl + '/especialidades/' + id);
+  }
 }

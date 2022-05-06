@@ -29,6 +29,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MedicoCrudComponent } from './views/medico-crud/medico-crud.component';
 import { MedicoCreateComponent } from './components/medico/medico-create/medico-create.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MedicoReadComponent } from './components/medico/medico-read/medico-read.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatSelectModule } from '@angular/material/select';
     EspecialidadesCreateComponent,
     EspecialidadesReadComponent,
     MedicoCrudComponent,
-    MedicoCreateComponent
+    MedicoCreateComponent,
+    MedicoReadComponent
   ],
   imports: [
     BrowserModule,
