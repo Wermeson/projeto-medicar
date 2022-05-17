@@ -1,33 +1,28 @@
-import { AccountService } from './../shared/account.service';
-import { Component, OnInit } from '@angular/core';
+import { AccountService } from "./../shared/account.service";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-create-account',
-  templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.css']
+  selector: "app-create-account",
+  templateUrl: "./create-account.component.html",
+  styleUrls: ["./create-account.component.css"],
 })
 export class CreateAccountComponent implements OnInit {
-
   account = {
-    username: '',
-    email: '',
-    password: ''
+    username: "",
+    email: "",
+    password: "",
   };
 
-  constructor(
-    private accountService: AccountService
-  ) { }
+  constructor(private accountService: AccountService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async onSubmit() {
     try {
       const result = await this.accountService.createAccount(this.account);
-      this.accountService.showMessage("Usuário criado com sucesso!")
+      this.accountService.showMessage("Usuário criado com sucesso!");
     } catch (error) {
-      this.accountService.showMessage("Algo de errado aconteceu!", true)
+      this.accountService.showMessage("Algo de errado aconteceu!", true);
     }
   }
-
 }

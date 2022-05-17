@@ -1,31 +1,34 @@
 <mat-card>
-    <mat-card-title>Novo Médico</mat-card-title>
-    <form>
-        <mat-form-field>
-            <input matInput placeholder="Nome"
-             [(ngModel)]="medico.nome" name="nome">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="CRM"
-             [(ngModel)]="medico.crm" name="crm">
-        </mat-form-field>
+  <mat-card-title>Novo Médico</mat-card-title>
+  <form>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Nome"
+        [(ngModel)]="medico.nome"
+        name="nome"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="CRM" [(ngModel)]="medico.crm" name="crm" />
+    </mat-form-field>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Especialidades</mat-label>
-            <mat-select [(ngModel)]="medico.especialidade_id" name="especialidade_id">
-              <mat-option *ngFor="let especialidade of especialidades" [value]="especialidade.id">
-                {{especialidade.nome}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-    </form>
+    <mat-form-field appearance="fill">
+      <mat-label>Especialidades</mat-label>
+      <mat-select [(ngModel)]="medico.especialidade_id" name="especialidade_id">
+        <mat-option
+          *ngFor="let especialidade of especialidades"
+          [value]="especialidade.id"
+        >
+          {{ especialidade.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
 
+  <button mat-raised-button (click)="createMedico()" color="primary">
+    Salvar
+  </button>
 
-    <button mat-raised-button (click)="createMedico()" color="primary">
-        Salvar
-    </button>
-
-    <button mat-raised-button (click)="cancel()" >
-        Cancelar
-    </button>
+  <button mat-raised-button (click)="cancel()">Cancelar</button>
 </mat-card>

@@ -1,38 +1,37 @@
 <mat-toolbar>
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-        <i class="material-icons" *ngIf="!sidenav.opened">
-            menu
-        </i>
-        <i class="material-icons" *ngIf="sidenav.opened">
-            close
-        </i>
-    </button>
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <i class="material-icons" *ngIf="!sidenav.opened"> menu </i>
+    <i class="material-icons" *ngIf="sidenav.opened"> close </i>
+  </button>
 </mat-toolbar>
 <mat-sidenav-container class="container">
-    <mat-sidenav class="sidenav" mode="over" 
-        fixedInViewport="true" fixedTopGap="64" #sidenav="matSidenav">
-        <mat-nav-list class="nav-list">
-            <a mat-list-item routerLink="/">
-                <i class="material-icons">
-                    home
-                </i>
-                Início
-            </a>
-            <a mat-list-item routerLink="/especialidades">
-                <i class="material-icons">
-                    storefront
-                </i>
-                Especialidades
-            </a>
-            <a mat-list-item routerLink="/medicos">
-                <i class="material-icons">
-                    storefront
-                </i>
-                Médicos
-            </a>
-        </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content class="content">
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
+  <mat-sidenav
+    class="sidenav"
+    mode="over"
+    fixedInViewport="true"
+    fixedTopGap="64"
+    #sidenav="matSidenav"
+  >
+    <mat-nav-list class="nav-list">
+      <a mat-list-item routerLink="/">
+        <i class="material-icons"> home </i>
+        Início
+      </a>
+      <a mat-list-item routerLink="/especialidades">
+        <i class="material-icons"> storefront </i>
+        Especialidades
+      </a>
+      <a mat-list-item routerLink="/medicos">
+        <i class="material-icons"> storefront </i>
+        Médicos
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>

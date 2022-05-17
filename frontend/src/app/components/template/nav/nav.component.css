@@ -1,20 +1,20 @@
 .sidenav {
-    background-color: #d2d6de;
-    width: 200px;
+  background-color: #d2d6de;
+  width: 200px;
 }
 
 .sidenav a {
-    color: #000;
+  color: #000;
 }
 
 .sidenav i {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 
 .content {
-    padding: 16px;
-    background-color: #FFF;
-    margin-left: 32px;
+  padding: 16px;
+  background-color: #fff;
+  margin-left: 32px;
 }
 
 /* mat-sidenav-container {
@@ -22,13 +22,13 @@
 } */
 
 mat-sidenav {
-    margin: 16px;
-    width: 00px;
-    border-right: none;
-    background: #002b5c;
-    color: white;
-    border-radius: 10px;
-    padding: 16px;
-    text-align: center;
-    height: 780px;
+  margin: 16px;
+  width: 00px;
+  border-right: none;
+  background: #002b5c;
+  color: white;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  height: 780px;
 }

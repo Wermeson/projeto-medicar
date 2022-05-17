@@ -1,20 +1,20 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AccountService {
-  loginUrl = 'http://127.0.0.1:8000/login/'
-  createUserUrl = 'http://127.0.0.1:8000/users/'
-  constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
+  loginUrl = "http://127.0.0.1:8000/login/";
+  createUserUrl = "http://127.0.0.1:8000/users/";
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
   async login(user: any) {
     const result = await this.http.post<any>(this.loginUrl, user).toPromise();
-    console.log(result)
+    console.log(result);
     if (result && result.token) {
-      window.localStorage.setItem('token', result.token);
+      window.localStorage.setItem("token", result.token);
       return true;
     }
 
@@ -22,21 +22,23 @@ export class AccountService {
   }
 
   async createAccount(account: any) {
-    const result = await this.http.post<any>(this.createUserUrl, account).toPromise();
+    const result = await this.http
+      .post<any>(this.createUserUrl, account)
+      .toPromise();
     return result;
   }
 
   showMessage(msg: string, isError: boolean = false): void {
-    this.snackBar.open(msg, 'X', {
+    this.snackBar.open(msg, "X", {
       duration: 3000,
       horizontalPosition: "right",
       verticalPosition: "top",
-      panelClass: isError ? ['msg-error'] : ['msg-success']
-    })
+      panelClass: isError ? ["msg-error"] : ["msg-success"],
+    });
   }
 
   getAuthorizationToken() {
-    const token = window.localStorage.getItem('token');
+    const token = window.localStorage.getItem("token");
     return token;
   }
 
