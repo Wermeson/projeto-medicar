@@ -27,7 +27,6 @@ export class MedicoReadComponent implements OnInit {
   getEspecialidadeById(id:number){
     this.especialidadeService.getEspecialidade(id).subscribe(especialidade => {
       this.especialidade = especialidade
-      console.log(this.especialidade[0].nome);
       return this.especialidade
     })
   }

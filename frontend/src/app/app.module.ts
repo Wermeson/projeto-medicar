@@ -30,7 +30,10 @@ import { MedicoCrudComponent } from './views/medico-crud/medico-crud.component';
 import { MedicoCreateComponent } from './components/medico/medico-create/medico-create.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MedicoReadComponent } from './components/medico/medico-read/medico-read.component';
-
+import { LoginComponent } from './account/login/login.component';
+import { CreateAccountComponent } from './account/create-account/create-account.component';
+import { AuthenticationComponent } from './views/authentication/authentication.component';
+import { httpInterceptorProviders } from './http-interceptors';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +46,10 @@ import { MedicoReadComponent } from './components/medico/medico-read/medico-read
     EspecialidadesReadComponent,
     MedicoCrudComponent,
     MedicoCreateComponent,
-    MedicoReadComponent
+    MedicoReadComponent,
+    LoginComponent,
+    CreateAccountComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +70,9 @@ import { MedicoReadComponent } from './components/medico/medico-read/medico-read
     MatSortModule,
     MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

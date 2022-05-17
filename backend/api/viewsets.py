@@ -14,7 +14,7 @@ from backend.viewmixins import EspecialidadeViewMixin
 class EspecialidadeViewSet(EspecialidadeViewMixin):
     serializer_class = serializers.EspecialidadeSerializer
     queryset = Especialidade.objects.all()
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     filter_backends = [filters_rest.SearchFilter]
     search_fields = ["^nome"]
 
