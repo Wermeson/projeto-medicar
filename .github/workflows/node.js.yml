@@ -32,5 +32,5 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm install -g prettier
-    - run: npm run check-style
+    - run: prettier --check
 
